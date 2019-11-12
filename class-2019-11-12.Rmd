@@ -1,0 +1,49 @@
+---
+title: "class-2019-11-12"
+author: "Anan Hafez"
+date: "11/12/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(shiny)
+library(gganimate)
+library(janitor)
+library(skimr)
+library(tidyr)
+library(stringr)
+library(httr)
+library(RCurl)
+library(lubridate)
+library(readxl)
+library(gt)
+library(reshape2)
+library(ggplot2)
+library(purrr)
+library(moderndive)
+library(fs)
+library(infer)
+library(googlesheets4)
+library(scales)
+library(TeachBayes)
+library(sf)
+library(dplyr)
+library(httr)
+library(jsonlite)
+library(transformr)
+library(rstanarm)
+library(tidyverse)
+sheets_deauth()
+```
+
+```{r}
+x <- read_sheet("13NhlT-Oik5P4NOKRWwrJ7xZQlddFNk81HHEw9wkWglM")
+
+x %>% ggplot(aes(x = partisanship, y = dvote)) + geom_jitter(height = 0.1) + geom_smooth(method = "lm", se = FALSE)
+
+mod <- lm(data = x, dvote~partisanship)
+
+mod
+```
+
